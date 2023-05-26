@@ -2,7 +2,6 @@ package br.com.cursonelio.nelio.entities;
 
 import br.com.cursonelio.nelio.entities.pk.OrderItemPk;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Embeddable;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -23,7 +22,7 @@ public class OrderItem implements Serializable {
     public OrderItem() {
     }
 
-    public OrderItem(Order order,Product product ,Integer quantity, Double price) {
+    public OrderItem(Order order, Product product, Integer quantity, Double price) {
         this.quantity = quantity;
         this.price = price;
         id.setOrder(order);
@@ -41,17 +40,21 @@ public class OrderItem implements Serializable {
     public Double getPrice() {
         return price;
     }
+
     @JsonIgnore
-    public Order getOrder(){
+    public Order getOrder() {
         return id.getOrder();
     }
-    public void setOrder(Order order){
+
+    public void setOrder(Order order) {
         id.setOrder(order);
     }
-    public Product getProduct(){
+
+    public Product getProduct() {
         return id.getProduct();
     }
-    public void setOrder(Product product){
+
+    public void setOrder(Product product) {
         id.setProduct(product);
     }
 

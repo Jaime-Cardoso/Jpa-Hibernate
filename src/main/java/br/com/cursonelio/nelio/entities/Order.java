@@ -2,7 +2,6 @@ package br.com.cursonelio.nelio.entities;
 
 import br.com.cursonelio.nelio.entities.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
