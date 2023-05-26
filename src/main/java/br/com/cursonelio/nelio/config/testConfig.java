@@ -2,10 +2,12 @@ package br.com.cursonelio.nelio.config;
 
 import br.com.cursonelio.nelio.entities.Category;
 import br.com.cursonelio.nelio.entities.Order;
+import br.com.cursonelio.nelio.entities.OrderItem;
 import br.com.cursonelio.nelio.entities.Product;
 import br.com.cursonelio.nelio.entities.User;
 import br.com.cursonelio.nelio.entities.enums.OrderStatus;
 import br.com.cursonelio.nelio.repository.CategoryRepository;
+import br.com.cursonelio.nelio.repository.OrderItemRepository;
 import br.com.cursonelio.nelio.repository.OrderRepository;
 import br.com.cursonelio.nelio.repository.ProductRepository;
 import br.com.cursonelio.nelio.repository.UserRepository;
@@ -31,6 +33,9 @@ public class testConfig implements CommandLineRunner {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -65,5 +70,11 @@ public class testConfig implements CommandLineRunner {
         Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.WATTING_PATMENT, u2);
         Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.WATTING_PATMENT, u1);
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+
+        OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+        OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+        OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+        OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
+        orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
     }
 }
