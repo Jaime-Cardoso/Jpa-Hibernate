@@ -4,6 +4,7 @@ import br.com.cursonelio.nelio.entities.User;
 import br.com.cursonelio.nelio.repository.UserRepository;
 import br.com.cursonelio.nelio.service.exeptions.DatabaseException;
 import br.com.cursonelio.nelio.service.exeptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -42,9 +43,13 @@ public class UserService {
     }
 
     public User update(Long id, User obj) {
+       try {
         User entitiy = userRepository.getReferenceById(id);
         updateData(entitiy, obj);
         return userRepository.save(entitiy);
+       }catch (EntityNotFoundException e){
+           throw new ResourceNotFoundException(id);
+       }
     }
 
     private void updateData(User entitiy, User obj) {
